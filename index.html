@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#edf1eb"><meta name="description" content="010 — Tu progreso">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="assets/icon.svg">
+<link rel="apple-touch-icon" href="assets/icon-192.png"><link rel="stylesheet" href="styles.css"><title>010</title>
+</head><body><div class="app">
+<header><a class="brand" href="#"><b>010</b><span>TU PROGRESO</span></a><button id="theme" class="round" aria-label="Cambiar tema">◐</button></header>
+<main>
+<section class="screen active" id="home">
+<div class="eyebrow" id="today-label">HOY</div><div class="welcome"><div><h1>Vamos a por ello.</h1><p class="muted">Un día más, a tu ritmo.</p></div><span class="date" id="date"></span></div>
+<div class="hero"><div class="eyebrow">CALORÍAS DE HOY</div><div class="big"><strong id="home-cal">0</strong><span>/ <span id="home-target">2.200</span> kcal</span></div><div class="track"><i id="home-bar"></i></div><div class="between tiny"><span id="remaining">2.200 kcal restantes</span><span id="day-kind">Descanso</span></div></div>
+<div class="section-title"><h2>Tu día</h2><small class="muted">Resumen diario</small></div>
+<div class="quick"><button class="tile" data-go="nutrition"><span class="symbol">＋</span><small>Añadir comida</small><b id="quick-cal">0 kcal</b></button><button class="tile" data-go="routine"><span class="symbol">↗</span><small>Actividad</small><b id="quick-activity">Sin actividad</b></button></div>
+<div class="panel water"><div class="between"><div><div class="eyebrow">HIDRATACIÓN</div><h2><span id="water-total">0</span> <small>/ 2,5 L</small></h2></div><span class="symbol">◒</span></div><div class="track"><i id="water-bar"></i></div><div class="actions"><button class="soft" data-water="250">+250 ml</button><button class="soft" data-water="500">+500 ml</button><button class="link" id="water-custom">Añadir cantidad</button></div></div>
+<div class="section-title"><h2>Esta semana</h2></div><div class="stats"><div><b id="week-workouts">0</b><small>entrenamientos</small></div><div><b id="week-average">—</b><small>media kcal/día</small></div><div><b id="last-weight">—</b><small>último peso</small></div></div>
+</section>
+<section class="screen" id="nutrition"><div class="eyebrow">ALIMENTACIÓN</div><h1>Nutrición</h1><p class="muted">Registra lo que comes, sin complicaciones.</p>
+<div class="panel"><small class="muted">Consumido hoy</small><div class="total"><b id="nutrition-total">0</b> <small>kcal</small></div><div class="track"><i id="nutrition-bar"></i></div><small class="muted" id="nutrition-target">Objetivo: 2.200 kcal</small></div>
+<div class="section-title"><h2>Comidas de hoy</h2><button class="link" id="add-meal">＋ Añadir comida</button></div><div id="meal-list" class="stack"></div>
+<div class="section-title"><h2>Registrar calorías</h2></div><form id="food-form" class="panel form">
+<label>Comida<select id="food-meal"><option>Desayuno</option><option>Comida</option><option>Merienda</option><option>Cena</option></select></label>
+<label>Descripción<input id="food-name" placeholder="Ej. Arroz con pollo" maxlength="60"></label>
+<label>Calorías (kcal)<input id="food-calories" type="number" min="0" max="10000" placeholder="Ej. 550" required></label><button class="primary">Guardar comida</button></form>
+</section>
+<section class="screen" id="routine"><div class="eyebrow">MOVIMIENTO</div><h1>Rutina</h1><p class="muted">Organiza tu semana y registra tu actividad.</p>
+<div class="section-title"><h2>Esta semana</h2><button class="link" id="toggle-day">Cambiar tipo de día</button></div><div class="week" id="week"></div><div class="panel" id="day-detail"></div>
+<div class="section-title"><h2>Registrar actividad</h2></div><form id="activity-form" class="panel form">
+<label>Tipo<select id="activity-type"><option>Entrenamiento de fuerza</option><option>Caminar</option><option>Cinta</option><option>Cardio</option><option>Otro</option></select></label>
+<label>Duración (minutos)<input id="activity-duration" type="number" min="1" max="1000" placeholder="Ej. 45" required></label><label>Notas (opcional)<input id="activity-notes" maxlength="100" placeholder="Ej. Espalda y bíceps"></label><button class="primary">Guardar actividad</button></form>
+<div class="section-title"><h2>Actividad reciente</h2></div><div id="activity-list" class="stack"></div>
+</section>
+<section class="screen" id="progress"><div class="eyebrow">EVOLUCIÓN</div><h1>Tu progreso</h1><p class="muted">Los cambios importantes se construyen poco a poco.</p>
+<div class="panel"><div class="between"><h2>Peso corporal</h2><small class="muted">kg</small></div><div class="weight-current" id="progress-weight">—</div><svg id="chart" viewBox="0 0 320 125" role="img" aria-label="Evolución del peso"></svg>
+<form id="weight-form" class="inline"><input id="weight-input" type="number" min="20" max="400" step=".1" placeholder="Peso en kg" required><button class="primary">Registrar</button></form>
+<div class="inline goal"><label>Objetivo (kg)<input id="goal-weight" type="number" min="20" max="400" step=".1" placeholder="Opcional"></label><button class="soft" id="save-goal">Guardar</button></div></div>
+<div class="section-title"><h2>Medidas corporales</h2><button class="link" id="add-measure">＋ Añadir</button></div><div id="measure-list" class="stack"></div>
+<form id="measure-form" class="panel form" hidden><label>Medida<input id="measure-name" placeholder="Ej. Cintura" maxlength="30" required></label><label>Valor (cm)<input id="measure-value" type="number" min="1" max="300" step=".1" required></label><button class="primary">Guardar medida</button></form>
+<div class="section-title"><h2>Estadísticas</h2></div><div class="stats"><div><b id="stat-average">—</b><small>media kcal/día</small></div><div><b id="stat-training">0</b><small>sesiones</small></div><div><b id="stat-days">0</b><small>días registrados</small></div></div>
+</section>
+<section class="screen" id="profile"><div class="eyebrow">CONFIGURACIÓN</div><h1>Perfil</h1><p class="muted">Ajusta tus datos y objetivos.</p>
+<form id="profile-form" class="panel form"><h2>Datos personales</h2>
+<label>Edad<input id="age" type="number" min="14" max="100" required></label><label>Altura (cm)<input id="height" type="number" min="100" max="250" required></label><label>Peso actual (kg)<input id="weight" type="number" min="20" max="400" step=".1" required></label>
+<label>Sexo para cálculo metabólico<select id="sex"><option value="male">Hombre</option><option value="female">Mujer</option></select></label><label>Nivel de actividad<select id="activity"><option value="1.2">Sedentario</option><option value="1.375">Ligero</option><option value="1.55">Moderado</option><option value="1.725">Alto</option><option value="1.9">Muy alto</option></select></label>
+<h2>Objetivos calóricos</h2><label>Días de entrenamiento (kcal)<input id="training-kcal" type="number" min="1000" max="6000"></label><label>Días de descanso (kcal)<input id="rest-kcal" type="number" min="1000" max="6000"></label><button class="primary">Guardar perfil</button></form>
+<div class="panel"><div class="eyebrow">ESTIMACIÓN METABÓLICA</div><div class="metabolic"><div><b id="bmr">—</b><small>Metabolismo basal</small></div><div><b id="tdee">—</b><small>Mantenimiento estimado</small></div></div><p class="tiny muted">Estimaciones orientativas mediante Mifflin-St Jeor. No sustituyen una valoración profesional.</p></div>
+<div class="panel"><h2>Tus datos</h2><p class="muted tiny">Los registros se guardan en este dispositivo. Exporta una copia para conservarlos si cambias de móvil o navegador.</p><div class="actions"><button class="soft" id="export">Exportar copia</button><label class="soft file">Restaurar copia<input id="import" type="file" accept="application/json" hidden></label></div><p class="tiny muted">Recuerda hacer una copia de seguridad cada mes. El aviso aparece al abrir la aplicación.</p></div>
+<div class="panel"><div class="eyebrow">010 · TU PROGRESO</div><p class="tiny muted">Privado por diseño. No hay cuenta ni servidor: tus registros permanecen en el almacenamiento local del navegador.</p><button class="link danger" id="reset">Borrar todos mis datos</button></div>
+</section>
+</main>
+<nav class="nav"><button class="nav-item active" data-screen="home"><span>⌂</span><small>Inicio</small></button><button class="nav-item" data-screen="nutrition"><span>◉</span><small>Nutrición</small></button><button class="nav-item" data-screen="routine"><span>↗</span><small>Rutina</small></button><button class="nav-item" data-screen="progress"><span>⌁</span><small>Progreso</small></button><button class="nav-item" data-screen="profile"><span>○</span><small>Perfil</small></button></nav><div id="toast" class="toast" role="status"></div></div><script src="app.js"></script></body></html>
